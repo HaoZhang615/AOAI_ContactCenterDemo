@@ -4,7 +4,5 @@ secrets.toml
 audios/*
 synthesized_documents/*
 scripts/*
-logos/*
 archived_documents/*
 tts_batch.py
-SynthesizeCustomerConversations.py

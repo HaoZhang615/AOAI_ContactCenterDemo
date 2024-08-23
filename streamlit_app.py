@@ -67,17 +67,16 @@ if st.session_state.logged_in == False:
 
     with col1:
         # Mapping company names to logo filenames
-        companies = ["Coca&Cola", "Danone", "Kellogg's", "Kraft Heinz", "Mondelez", "Nestlé", "Unilever"]
+        companies = ["Azure", "Dynamics", "GitHub", "LinkedIn", "Office", "Hardware"]
         logo_mapping = {
-            "Coca&Cola": "CocaCola.png",
-            "Danone": "Danone.png",
-            "Kellogg's": "Kelloggs.png",
-            "Kraft Heinz": "KraftHeinz.png",
-            "Mondelez": "Mondelez.png",
-            "Nestlé": "Nestle.png",
-            "Unilever": "Unilever.png"
+            "Azure": "Azure.png",
+            "Dynamics": "Dynamics.png",
+            "GitHub": "GitHub.png",
+            "LinkedIn": "LinkedIn.png",
+            "Office": "Office.png",
+            "Hardware": "Hardware.png",
         }
-        company = st.radio("Select a company:", companies, horizontal=True)
+        company = st.radio("Select a product:", companies, horizontal=True)
 
     with col2:
         # Set a fixed height container for the logo
@@ -87,6 +86,6 @@ if st.session_state.logged_in == False:
             base_dir = os.path.dirname(os.path.abspath(__file__))
             logo_path = os.path.join(base_dir, f"logos/{logo_filename}")
             # Display the image inside the fixed height container
-            st.image(logo_path, width=100)
+            st.image(logo_path, width=300)
 
 

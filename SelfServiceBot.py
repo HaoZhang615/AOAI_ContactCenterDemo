@@ -109,7 +109,7 @@ def tools_format() -> list:
                 "type": "function",
                 "function":{            
                     "name": "search_web",
-                    "description": "use this function to search information on the web. Mandatory when the user asks for any questions related to Nestle, its products, or the brands Nestle owns.",
+                    "description": "use this function to search information on the web. Mandatory when the user asks for any questions related to Microsoft, its products, or the services Microsoft provides.",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -157,14 +157,15 @@ def search_web(query, up_to_date:bool=False):
         raise ex
 
 # Function with function calling
-def nestle_chat(user_request, conversation_history: list = []):
-    system_message = """You are a helpful assistant that help people find information about Nestle and the major brands owned by it.
-            If user is asking about any food or beverages, you promote Nestlé's equivalent products by using the search_web function to search the same category across Nestlé's portfolio. 
+def selfservice_chat(user_request, conversation_history: list = []):
+    system_message = """You are a helpful assistant that help people find information about Microsoft and the major products and services provided by it.
+            If user is asking about any IT related products or services, you promote Microsoft's equivalent products by using the search_web function to search the same category across Microsoft's portfolio. 
             Remind the user briefly at the end of your answer which web url you used to get the information.
             IMPORTANT: It is crucial to contextualize first what is the user request really about based on user intent and chat history as your context, and then choose the function to use. Slow down and think step by step.
             Only call functions with arguments coming verbatim from the user or the output of other functions.
-            If the question is not related to Nestle, its products, or the brands Nestle owns, you can answer the question directly using your own knowledge without calling any function.
-            If the question is about any of Nestle or its brands competitors, politely decline to answer.
+            If the question is not related to Microsoft, its products, or the services Microsoft provides, you can answer the question directly using your own knowledge without calling any function.
+            If the question is about any products and servicess of Microsoft's competitors, politely decline to answer.
+            Be brief and concise in your answers.
             """
     customer_info = get_customer_info(session_customer_id)
     customer_info_str = json.dumps(customer_info, indent=4)
@@ -266,7 +267,6 @@ def nestle_chat(user_request, conversation_history: list = []):
 
 # CosmosDB Configuration
 cosmos_endpoint = st.secrets["COSMOS_ENDPOINT"]
-# cosmos_connection_string = st.secrets["COSMOS_CONNECTION_STRING"]
 cosmos_key = st.secrets["COSMOS_KEY"]  
 cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
 database_name = st.secrets["COSMOS_DATABASE"]
@@ -344,7 +344,7 @@ with conversation_container:
                 with st.chat_message(message["role"]):  
                     st.markdown(message["content"]) 
         with st.chat_message("assistant"):  
-            result= nestle_chat(prompt, st.session_state.messages)
+            result= selfservice_chat(prompt, st.session_state.messages)
             audio_text = re.sub(r'\([^)]*\)', '', result)
             # trim the result to remove all occurances of text wrapped within brackets, e.g. (source_page: "Nestle") and (source_url: "https://www.nestle.com/")
             st.markdown(result)

@@ -25,7 +25,6 @@ client = AzureOpenAI(
 
 # Azure Cosmos DB connection details
 cosmos_endpoint = st.secrets["COSMOS_ENDPOINT"]
-# cosmos_connection_string = st.secrets["COSMOS_CONNECTION_STRING"]
 cosmos_key = st.secrets["COSMOS_KEY"]  
 cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
 database_name = st.secrets["COSMOS_DATABASE"]
