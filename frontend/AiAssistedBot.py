@@ -10,10 +10,10 @@ from datetime import datetime
 st.title("AI Assisted Live Chat with Forwarded Customer Conversation")
 
 # Azure Open AI Configuration
-api_base = st.secrets["AOAI_API_BASE"] # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-api_key = st.secrets["AOAI_API_KEY"]
-api_version = "2024-02-01"
-gpt4o_mini = st.secrets["AOAI_GPT4O_MINI_MODEL"]
+api_base = st.session_state.AOAI_API_BASE # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
+api_key = st.session_state.AOAI_API_KEY
+api_version = st.session_state.AOAI_API_VERSION
+gpt4o_mini = st.session_state.AOAI_GPT4O_MINI_MODEL
 
 session_customer_id = st.session_state.customer_id
 
@@ -23,11 +23,11 @@ client = AzureOpenAI(
     azure_endpoint = api_base,
 )
 
-# Azure Cosmos DB connection details
-cosmos_endpoint = st.secrets["COSMOS_ENDPOINT"]
-cosmos_key = st.secrets["COSMOS_KEY"]  
+# CosmosDB Configuration
+cosmos_endpoint = st.session_state.COSMOS_ENDPOINT
+cosmos_key = st.session_state.COSMOS_KEY
 cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
-database_name = st.secrets["COSMOS_DATABASE"]
+database_name = st.session_state.COSMOS_DATABASE
 database = cosmos_client.create_database_if_not_exists(id=database_name)  
 customer_container_name = "Customer"
 purchase_container_name = "Purchases"

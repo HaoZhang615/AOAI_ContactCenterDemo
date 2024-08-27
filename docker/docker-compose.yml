@@ -1,0 +1,10 @@
+version: "0.1"
+name: aga-docextracionai
+services:
+  web:
+    image: hzmsftapps.azurecr.io/hz-aoai-contactcenter-frontend:latest
+    ports:
+      - "8080:80"
+    env_file:
+      - ../frontend/.env
+ 

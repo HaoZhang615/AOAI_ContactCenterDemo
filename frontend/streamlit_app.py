@@ -1,5 +1,9 @@
 import streamlit as st
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Initialize the session state
 if "logged_in" not in st.session_state:
@@ -27,6 +31,25 @@ ai_assisted_page = st.Page("AiAssistedBot.py", title="AI Assisted Chatbot", icon
 # Set the page configuration
 st.set_page_config(page_title="Customer Contact Center Demo", page_icon="🧊", layout="wide")
 
+# initiate the session state for all secrets
+env_vars = {
+    'AOAI_API_BASE': "AOAI_API_BASE",
+    'AOAI_API_KEY': "AOAI_API_KEY",
+    'AOAI_API_VERSION': "AOAI_API_VERSION",
+    'AOAI_GPT4O_MINI_MODEL': "AOAI_GPT4O_MINI_MODEL",
+    'AOAI_TTS_MODEL_NAME': "AOAI_TTS_MODEL_NAME",
+    'AOAI_WHISPER_MODEL_NAME': "AOAI_WHISPER_MODEL_NAME",
+    'BING_CUSTOM_SEARCH_API_ENDPOINT': "BING_CUSTOM_SEARCH_API_ENDPOINT",
+    'BING_CUSTOM_SEARCH_API_KEY': "BING_CUSTOM_SEARCH_API_KEY",
+    'BING_CUSTOM_CONFIG_ID': "BING_CUSTOM_CONFIG_ID",
+    'COSMOS_ENDPOINT': "COSMOS_ENDPOINT",
+    'COSMOS_KEY': "COSMOS_KEY",
+    'COSMOS_DATABASE': "COSMOS_DATABASE"
+}
+for var, env in env_vars.items():
+    if var not in st.session_state:
+        st.session_state[var] = os.getenv(env)
+
 # Show customer sign-in dropdown
 if not st.session_state.logged_in:
     st.title("Azure OpenAI powered Contact Center")
@@ -51,7 +74,6 @@ if not st.session_state.logged_in:
     else:
         customer_id = 5
     st.session_state.customer_id = customer_id
-
 
     # Navigation based on login state
 if st.session_state.logged_in:

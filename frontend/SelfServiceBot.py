@@ -10,12 +10,12 @@ import io
 import re
 
 # Azure Open AI Configuration
-api_base = st.secrets["AOAI_API_BASE"] # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-api_key = st.secrets["AOAI_API_KEY"]
-api_version = "2024-02-01"
-gpt4o_mini = st.secrets["AOAI_GPT4O_MINI_MODEL"]
-whisper = st.secrets["AOAI_WHISPER_MODEL"]
-tts = st.secrets["AOAI_TTS_MODEL"] 
+api_base = st.session_state.AOAI_API_BASE # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
+api_key = st.session_state.AOAI_API_KEY
+api_version = st.session_state.AOAI_API_VERSION
+gpt4o_mini = st.session_state.AOAI_GPT4O_MINI_MODEL
+whisper = st.session_state.AOAI_WHISPER_MODEL_NAME
+tts = st.session_state.AOAI_TTS_MODEL_NAME
 
 session_customer_id = st.session_state.customer_id
 client = AzureOpenAI(
@@ -23,12 +23,21 @@ client = AzureOpenAI(
     api_version=api_version,
     azure_endpoint = api_base,
 )
-# st.set_page_config(
-#     page_title="Azure OpenAI powered Self Service Chatbot",
-#     page_icon="🧊",
-#     layout="wide",
-#     initial_sidebar_state="expanded"
-# )
+
+# CosmosDB Configuration
+cosmos_endpoint = st.session_state.COSMOS_ENDPOINT
+cosmos_key = st.session_state.COSMOS_KEY
+cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
+database_name = st.session_state.COSMOS_DATABASE
+database = cosmos_client.create_database_if_not_exists(id=database_name)  
+container_name = "AI_Conversations"  
+customer_container_name = "Customer"
+purchase_container_name = "Purchases"
+container = database.create_container_if_not_exists(  
+    id=container_name,   
+    partition_key=PartitionKey(path="/customer_id"),  
+    offer_throughput=400  
+) 
 
 # Function STT
 def speech_to_text(audio:bytes)->str:
@@ -96,11 +105,11 @@ if "messages" not in st.session_state:
     st.session_state.messages = []  
     st.session_state.session_id = str(uuid.uuid4())  # Unique session ID  
     #print(st.session_state.session_id)
-# Bing Custome Search Configuration
-bing_api_key = st.secrets["BING_CUSTOM_SEARCH_API_KEY"]
-bing_api_endpoint = st.secrets["BING_CUSTOM_SEARCH_API_ENDPOINT"]
-custom_config_id = st.secrets["BING_CUSTOM_CONFIG_ID"] 
 
+# Bing Custome Search Configuration
+bing_api_key = st.session_state.BING_CUSTOM_SEARCH_API_KEY
+bing_api_endpoint = st.session_state.BING_CUSTOM_SEARCH_API_ENDPOINT
+custom_config_id = st.session_state.BING_CUSTOM_CONFIG_ID
 
 # Function to format the tools
 def tools_format() -> list:
@@ -263,22 +272,6 @@ def selfservice_chat(user_request, conversation_history: list = []):
         return second_response.choices[0].message.content
     else:
         return response_message.content
-
-
-# CosmosDB Configuration
-cosmos_endpoint = st.secrets["COSMOS_ENDPOINT"]
-cosmos_key = st.secrets["COSMOS_KEY"]  
-cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
-database_name = st.secrets["COSMOS_DATABASE"]
-database = cosmos_client.create_database_if_not_exists(id=database_name)  
-container_name = "AI_Conversations"  
-customer_container_name = "Customer"
-purchase_container_name = "Purchases"
-container = database.create_container_if_not_exists(  
-    id=container_name,   
-    partition_key=PartitionKey(path="/customer_id"),  
-    offer_throughput=400  
-) 
 
 def get_customer_info(customer_id):
     # Get the database and container
