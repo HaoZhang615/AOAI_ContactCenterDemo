@@ -1,0 +1,23 @@
+{
+    "customer_id": "bad394665046309d8bccee6eb3a60704",
+    "product_id": "a9aa8fb3af413a7b8fd98b1b4f40c82d",
+    "quantity": 5,
+    "purchasing_date": "2024-03-15T10:30:00Z",
+    "delivered_date": "2024-03-20T15:45:00Z",
+    "order_number": "3d06c8ff3f8a35199b647f428a359e03",
+    "product_details": {
+        "name": "Xbox Series X",
+        "category": "Gaming Console",
+        "type": "Video Game Console",
+        "brand": "Microsoft",
+        "unit_price": 499.99,
+        "weight": {
+            "value": 4.45,
+            "unit": "kg"
+        },
+        "color": "Black",
+        "material": "Plastic and Metal"
+    },
+    "total_price": 2499.95,
+    "id": "4_3d06c8ff3f8a35199b647f428a359e03"
+}

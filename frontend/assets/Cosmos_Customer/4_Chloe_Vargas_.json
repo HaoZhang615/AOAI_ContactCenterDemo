@@ -1,0 +1,14 @@
+{
+    "first_name": "Chloe",
+    "last_name": "Vargas",
+    "email": "chloe.vargas@example.com",
+    "address": {
+        "street": "Maple Ave 42",
+        "city": "San Diego",
+        "postal_code": "92101",
+        "country": "USA"
+    },
+    "phone_number": "+1234567890",
+    "customer_id": "bc0436bb9028341b8097f0b17cd5cbb9",
+    "id": "4_bc0436bb9028341b8097f0b17cd5cbb9"
+}

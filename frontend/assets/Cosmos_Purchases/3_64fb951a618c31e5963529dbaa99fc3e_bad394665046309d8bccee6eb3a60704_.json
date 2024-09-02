@@ -1,0 +1,23 @@
+{
+    "customer_id": "bad394665046309d8bccee6eb3a60704",
+    "product_id": "64fb951a618c31e5963529dbaa99fc3e",
+    "quantity": 5,
+    "purchasing_date": "2024-04-15T10:30:00Z",
+    "delivered_date": "2024-04-20T12:00:00Z",
+    "order_number": "c348c355d1bc3cde906dd899beb1dc52",
+    "product_details": {
+        "name": "Microsoft Surface Laptop 4",
+        "category": "Laptops",
+        "type": "Personal Computer",
+        "brand": "Microsoft",
+        "unit_price": 999.99,
+        "weight": {
+            "value": 2.79,
+            "unit": "lbs"
+        },
+        "color": "Platinum",
+        "material": "Aluminum"
+    },
+    "total_price": 4999.95,
+    "id": "3_c348c355d1bc3cde906dd899beb1dc52"
+}

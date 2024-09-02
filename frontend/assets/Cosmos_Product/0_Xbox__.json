@@ -1,0 +1,15 @@
+{
+    "name": "Xbox Series X",
+    "category": "Gaming Console",
+    "type": "Video Game Console",
+    "brand": "Microsoft",
+    "unit_price": 499.99,
+    "weight": {
+        "value": 4.45,
+        "unit": "kg"
+    },
+    "color": "Black",
+    "material": "Plastic and Metal",
+    "product_id": "a9aa8fb3af413a7b8fd98b1b4f40c82d",
+    "id": "0_a9aa8fb3af413a7b8fd98b1b4f40c82d"
+}

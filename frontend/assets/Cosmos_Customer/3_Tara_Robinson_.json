@@ -1,0 +1,14 @@
+{
+    "first_name": "Tara",
+    "last_name": "Robinson",
+    "email": "tara.robinson@example.com",
+    "address": {
+        "street": "Maple Ave 42",
+        "city": "Seattle",
+        "postal_code": "98101",
+        "country": "USA"
+    },
+    "phone_number": "+12065543210",
+    "customer_id": "0d8153fc6c92381e9e20d21f20379d80",
+    "id": "3_0d8153fc6c92381e9e20d21f20379d80"
+}

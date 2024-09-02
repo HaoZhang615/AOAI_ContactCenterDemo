@@ -1,0 +1,75 @@
+{
+    "customer_id": 18,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Hi Rachel, this is Emil from the customer service team at Microsoft. Thank you for calling today! May I know your name, please?"
+        },
+        {
+            "role": "user",
+            "content": "My name is Rachel, but honestly, I’m really frustrated right now!"
+        },
+        {
+            "role": "assistant",
+            "content": "I understand, Rachel. I'm here to help you with any concerns you have. Can you please tell me what’s bothering you today?"
+        },
+        {
+            "role": "user",
+            "content": "I keep getting charged for Office, and I don’t even use it! Why are you taking my money without my permission?"
+        },
+        {
+            "role": "assistant",
+            "content": "I apologize for the inconvenience, Rachel. Let’s look into those charges. Could you please provide me with the email address associated with your account?"
+        },
+        {
+            "role": "user",
+            "content": "It’s rachel@example.com, but that’s not the point! I shouldn’t be paying for something I don’t use! Do something about it!"
+        },
+        {
+            "role": "assistant",
+            "content": "I completely understand your frustration, Rachel. I’ll check your account details and see why those charges were made. Please hold on for just a moment."
+        },
+        {
+            "role": "user",
+            "content": "This is ridiculous! I shouldn’t have to wait. Just fix it, please!"
+        },
+        {
+            "role": "assistant",
+            "content": "I appreciate your patience, Rachel. I see that the Office subscription was auto-renewed. I can assist you in canceling that subscription immediately and issuing a refund for the last charge."
+        },
+        {
+            "role": "user",
+            "content": "Finally! That’s what I wanted to hear! How long will that take?"
+        },
+        {
+            "role": "assistant",
+            "content": "Once I process the cancellation and refund, you should see the refund in your account within 3-5 business days. Would you like me to proceed with that now?"
+        },
+        {
+            "role": "user",
+            "content": "Yes, do it. But I really can’t believe I had to go through this to get help!"
+        },
+        {
+            "role": "assistant",
+            "content": "I sincerely apologize for the inconvenience, Rachel. Let’s get this sorted out right away. I’m processing the cancellation and the refund now."
+        },
+        {
+            "role": "user",
+            "content": "You better. It shouldn’t be this difficult!"
+        },
+        {
+            "role": "assistant",
+            "content": "I completely understand, Rachel, and I appreciate your feedback. I assure you we are working to improve the experience. You will receive a confirmation email once this is completed. Is there anything else I can assist you with today?"
+        },
+        {
+            "role": "user",
+            "content": "No, just get it done. I’ll be waiting."
+        }
+    ],
+    "agent_id": 5,
+    "sentiment": "angry",
+    "topic": "payment",
+    "product": "Office",
+    "session_id": "1661709f7d343b2980b088738d6cb11a",
+    "id": "chat_1_1661709f7d343b2980b088738d6cb11a"
+}

@@ -1,0 +1,63 @@
+{
+    "customer_id": 26,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Hi Zachary, this is Betrace from the Microsoft customer service team. Thank you for calling! May I know your name?"
+        },
+        {
+            "role": "user",
+            "content": "My name is Zachary."
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you, Zachary! How can I assist you today?"
+        },
+        {
+            "role": "user",
+            "content": "I'm looking for some information about Microsoft Office. Can you tell me what the latest version includes?"
+        },
+        {
+            "role": "assistant",
+            "content": "Sure! The latest version of Microsoft Office includes enhanced features such as new collaboration tools, improved templates, and better integration with cloud services like OneDrive. Is there a specific application in Office you're interested in?"
+        },
+        {
+            "role": "user",
+            "content": "I mostly use Word and Excel. Are there any major updates for those?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, both Word and Excel have received some significant updates. Word now offers more advanced AI-driven editing suggestions, while Excel has introduced new data analysis features and improved functions like XLOOKUP. Would you like to know more about how to access these features?"
+        },
+        {
+            "role": "user",
+            "content": "That sounds helpful. How do I find those AI-driven editing suggestions in Word?"
+        },
+        {
+            "role": "assistant",
+            "content": "To access the AI-driven editing suggestions in Word, you can simply start typing your document. The suggestions will appear in a sidebar as you write. You can also click on 'Review' in the top menu and select 'Editor' to see all suggestions in one place. If you need further assistance with this, just let me know!"
+        },
+        {
+            "role": "user",
+            "content": "Got it. And what about Excel's new features? How do I use the XLOOKUP function?"
+        },
+        {
+            "role": "assistant",
+            "content": "The XLOOKUP function is quite straightforward to use. You can enter it like any other formula: =XLOOKUP(lookup_value, lookup_array, return_array). This function allows you to search a range or array and return an item corresponding to the first match found. If you'd like, I can give you more examples or help you with specific scenarios."
+        },
+        {
+            "role": "user",
+            "content": "No, that's alright. I think I can figure it out. Thanks for the information."
+        },
+        {
+            "role": "assistant",
+            "content": "You're welcome, Zachary! If you have any more questions about Microsoft Office or anything else, feel free to reach out. Have a great day!"
+        }
+    ],
+    "agent_id": 2,
+    "sentiment": "neutral",
+    "topic": "service",
+    "product": "Office",
+    "session_id": "63454300a8663bc8a2e2892b413a0421",
+    "id": "chat_0_63454300a8663bc8a2e2892b413a0421"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Microsoft Surface Laptop 4",
+    "category": "Laptops",
+    "type": "Personal Computer",
+    "brand": "Microsoft",
+    "unit_price": 999.99,
+    "weight": {
+        "value": 2.79,
+        "unit": "lbs"
+    },
+    "color": "Platinum",
+    "material": "Aluminum",
+    "product_id": "64fb951a618c31e5963529dbaa99fc3e",
+    "id": "1_64fb951a618c31e5963529dbaa99fc3e"
+}

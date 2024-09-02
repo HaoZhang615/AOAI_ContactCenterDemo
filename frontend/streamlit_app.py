@@ -137,7 +137,7 @@ if st.session_state.logged_in == False:
     human_conversation_folder_path = os.path.join(os.path.dirname(__file__), 'assets', 'Cosmos_HumanConversations')
     human_conversation_count = len([name for name in os.listdir(human_conversation_folder_path) if name.endswith('.json')])
     
-    col1, col2, col3 = st.columns([1, 1, 2])
+    col1, col2, col3 = st.columns([1, 2, 3])
     with col1:
         st.write("The synthesized products are:")
         for product in st.session_state.products:
