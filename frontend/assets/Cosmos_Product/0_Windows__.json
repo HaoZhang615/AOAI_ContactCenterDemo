@@ -1,0 +1,15 @@
+{
+    "name": "Windows 11",
+    "category": "Operating System",
+    "type": "Software",
+    "brand": "Microsoft",
+    "unit_price": 139.99,
+    "weight": {
+        "value": 0,
+        "unit": ""
+    },
+    "color": "N/A",
+    "material": "Digital",
+    "product_id": "7c50a3a3712a3a2daaa916270064df17",
+    "id": "0_7c50a3a3712a3a2daaa916270064df17"
+}

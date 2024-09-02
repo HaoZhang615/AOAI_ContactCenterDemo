@@ -1,0 +1,23 @@
+{
+    "customer_id": "467c575548763a8fa9b06c9ca825f1cb",
+    "product_id": "7c50a3a3712a3a2daaa916270064df17",
+    "quantity": 4,
+    "purchasing_date": "2024-03-15T14:48:00",
+    "delivered_date": "2024-03-20T10:30:00",
+    "order_number": "4e7bdbcbca78336e93e5a8cfb4e3840b",
+    "product_details": {
+        "name": "Windows 11",
+        "category": "Operating System",
+        "type": "Software",
+        "brand": "Microsoft",
+        "unit_price": 139.99,
+        "weight": {
+            "value": 0,
+            "unit": ""
+        },
+        "color": "N/A",
+        "material": "Digital"
+    },
+    "total_price": 559.96,
+    "id": "2_4e7bdbcbca78336e93e5a8cfb4e3840b"
+}

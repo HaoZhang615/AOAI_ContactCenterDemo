@@ -1,5 +1,5 @@
 import streamlit as st
-from azure.cosmos import CosmosClient, exceptions
+from azure.cosmos import CosmosClient, PartitionKey, exceptions
 from openai import AzureOpenAI
 import random
 import json
@@ -33,6 +33,11 @@ customer_container_name = "Customer"
 purchase_container_name = "Purchases"
 ai_conversations_container_name = "AI_Conversations"
 human_conversations_container_name = "Human_Conversations"
+human_conversation_container = database.create_container_if_not_exists(  
+    id=human_conversations_container_name,   
+    partition_key=PartitionKey(path="/customer_id"),  
+    offer_throughput=400  
+) 
 
 def get_customer_info(customer_id):
     # Get the database and container
@@ -204,7 +209,7 @@ def human_chat(customer_id):
 
 def save_chat(session_id, customer_id, messages):  
     document_id = f"chat_{session_id}"  # Create a document ID that is consistent throughout the session  
-    container = database.get_container_client(human_conversations_container_name)
+    container = human_conversation_container
     try:  
         # Attempt to read the existing document  
         item = container.read_item(item=document_id, partition_key=customer_id)
@@ -252,7 +257,7 @@ def persist_chat_messages(session_id, customer_id):
     # if the first message is from the assistant, update the data in Cosmos DB of the current session to swap the role of the user and the assistant . 
     # Then add the agent_id to the document.
     # finally, use Azure OpenAI to do entity recognition and sentiment analysis on the messages and save the results to Cosmos DB.
-    container = database.get_container_client(human_conversations_container_name)
+    container = human_conversation_container
     document_id = f"chat_{session_id}"
     item = container.read_item(item=document_id, partition_key=customer_id)
     # if the first message is from the assistant, iterate through messages and swap the role
