@@ -1,0 +1,23 @@
+{
+    "customer_id": "caae57c98ece3a83b9cfee10670a17cf",
+    "product_id": "b1a71ac49f663222b075f2dfddc0cff8",
+    "quantity": 7,
+    "purchasing_date": "2024-06-14T14:22:00Z",
+    "delivered_date": "2024-06-18T10:15:00Z",
+    "order_number": "811c8fef260b3914b410105b038b48d4",
+    "product_details": {
+        "name": "Activia Yogurt",
+        "category": "Dairy",
+        "type": "Probiotic Yogurt",
+        "brand": "Danone",
+        "unit_price": 1.99,
+        "weight": {
+            "value": 120,
+            "unit": "grams"
+        },
+        "color": "White",
+        "material": ""
+    },
+    "total_price": 13.93,
+    "id": "1_811c8fef260b3914b410105b038b48d4"
+}

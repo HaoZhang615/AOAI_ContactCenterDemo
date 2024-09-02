@@ -46,7 +46,7 @@ def get_customer_info(customer_id):
 
     try:
         # Query the container for the customer information
-        query = f"SELECT * FROM c WHERE c.customer_id = {customer_id}"
+        query = f"SELECT * FROM c WHERE c.customer_id = '{customer_id}'"
         items = list(container.query_items(query, enable_cross_partition_query=True))
         
         if items:
@@ -61,7 +61,7 @@ def get_previous_purchases(customer_id):
     container = database.get_container_client(purchase_container_name)
 
     try:
-        query = f"SELECT * FROM c WHERE c.customer_id = {customer_id}"
+        query = f"SELECT * FROM c WHERE c.customer_id = '{customer_id}'"
         items = list(container.query_items(query, enable_cross_partition_query=True))
         return items
     except exceptions.CosmosResourceNotFoundError:
@@ -110,7 +110,7 @@ def get_prior_conversation(customer_id):
     container = database.get_container_client(ai_conversations_container_name)
 
     try:
-        query = f"SELECT * FROM c WHERE c.customer_id = {customer_id} ORDER BY c._ts DESC"
+        query = f"SELECT * FROM c WHERE c.customer_id = '{customer_id}' ORDER BY c._ts DESC"
         items = list(container.query_items(query, enable_cross_partition_query=True, max_item_count=1))
         if items:
             return items[0]

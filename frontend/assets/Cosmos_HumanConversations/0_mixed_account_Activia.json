@@ -1,0 +1,79 @@
+{
+    "customer_id": 26,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Thank you for calling Danone customer service. My name is Fred. May I know your name?"
+        },
+        {
+            "role": "user",
+            "content": "Hello Fred, my name is Zachary."
+        },
+        {
+            "role": "assistant",
+            "content": "Hi Zachary! How can I assist you today?"
+        },
+        {
+            "role": "user",
+            "content": "I have some issues with my account and I also have questions about your Activia product."
+        },
+        {
+            "role": "assistant",
+            "content": "I can certainly help with that. First, let's address your account issue. What seems to be the problem?"
+        },
+        {
+            "role": "user",
+            "content": "I tried logging in, but it keeps saying my password is incorrect. I even tried resetting it, but I didn\\'t receive any email."
+        },
+        {
+            "role": "assistant",
+            "content": "I\\'m sorry to hear that, Zachary. Let me check your account details. Could you please provide me with your email address associated with the account?"
+        },
+        {
+            "role": "user",
+            "content": "Sure, it's zachary123@example.com."
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you. Please give me a moment to look into this."
+        },
+        {
+            "role": "assistant",
+            "content": "I have checked your account details, and it appears there was a temporary glitch in our system. I have manually reset your password and sent a reset link to your email. Can you please check your inbox?"
+        },
+        {
+            "role": "user",
+            "content": "Ok, I\\'ll check. Got it, thanks. Now about the Activia product, I\\'ve heard it\\'s good for digestion. Is that true?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, Activia is known for its probiotic benefits, which can aid in digestion. Do you have any specific questions about it?"
+        },
+        {
+            "role": "user",
+            "content": "Would it be safe to consume daily? I\\'ve had mixed experiences with probiotics before."
+        },
+        {
+            "role": "assistant",
+            "content": "Everyone\\'s body reacts differently, but Activia is designed for daily consumption. It\\'s always best to start with a small amount and see how your body reacts. If you have any concerns, you should consult with a healthcare professional."
+        },
+        {
+            "role": "user",
+            "content": "Alright, I\\'ll give it a try. Thanks for the help, Fred."
+        },
+        {
+            "role": "assistant",
+            "content": "You\\'re welcome, Zachary! If you have any more questions or need further assistance, feel free to reach out. Have a great day!"
+        },
+        {
+            "role": "user",
+            "content": "Thanks, you too."
+        }
+    ],
+    "agent_id": 6,
+    "sentiment": "mixed",
+    "topic": "account",
+    "product": "Activia",
+    "session_id": "bc5ee9f53c82398bab19210576d34616",
+    "id": "chat_0_bc5ee9f53c82398bab19210576d34616"
+}

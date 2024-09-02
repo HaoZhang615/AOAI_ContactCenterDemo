@@ -24,6 +24,7 @@ WORKDIR /usr/local/src/myscripts/frontend
 
 # Set environment variable for base directory
 ENV BASE_DIR="${PYTHONPATH}:/usr/local/src/myscripts/assets/scripts"
+ENV RUNNING_IN_DOCKER=true
 
 # Expose port for Streamlit
 EXPOSE 80

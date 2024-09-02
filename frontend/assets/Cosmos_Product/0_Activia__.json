@@ -1,0 +1,15 @@
+{
+    "name": "Activia Yogurt",
+    "category": "Dairy",
+    "type": "Probiotic Yogurt",
+    "brand": "Danone",
+    "unit_price": 1.99,
+    "weight": {
+        "value": 120,
+        "unit": "grams"
+    },
+    "color": "White",
+    "material": "",
+    "product_id": "b1a71ac49f663222b075f2dfddc0cff8",
+    "id": "0_b1a71ac49f663222b075f2dfddc0cff8"
+}
