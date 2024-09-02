@@ -5,7 +5,7 @@ This is a demo project for the AOAI Contact Center. It is a simple web applicati
 [![AOAI Contact Center Demo](https://youtu.be/EhXrOZg2NCE?si=jG-SlRPvSY4AWAG6)](https://youtu.be/EhXrOZg2NCE?si=jG-SlRPvSY4AWAG6)
 
 ## Architecture
-![architecture of Contact Center Demo](frontend\assets\architecture.png)
+![architecture of Contact Center Demo](./frontend/assets//architecture.png)
 
 ## Prerequisites
 - Azure Subscription
