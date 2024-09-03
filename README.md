@@ -10,20 +10,16 @@ This is a demo project for the AOAI Contact Center. It is a simple web applicati
 ## Prerequisites
 - Azure Subscription
 - Azure OpenAI Service
-- Bing Custom Search
+- Bing Search API/ Bing Custom Search API
 - Azure CosmosDB
-- Power BI
+- Power BI Desktop and Power BI Service
 - For frontend: 
     - ON Azure: Azure Container Registry, Web App
     - Locally: Docker/Streamlit
 
 ## Deployment (ToDos)
 - Terraform/Bicep scripts for deploying the Azure resources
-- Dockerize the Streamlit application
-- post deployment steps
-  - streamline Bing Custom Search deployment: provide a list of search URIs of any company's website
-  - fill the CosmosDB container "human conversations" with AI synthetic data
-- upload the Power BI report template
+- CI/CD pipeline using GitHub Actions for deploying the frontend to Azure Web App
 
 ## Test locally using Docker image
 1. ensure Docker is installed and Docker Desktop is running
@@ -41,4 +37,6 @@ This is a demo project for the AOAI Contact Center. It is a simple web applicati
 ```streamlit run .\frontend\streamlit_app.py```
 
 ## Synthesize data using Azure OpenAI API
-in the frontend "log in" page, at the lower right corner, there is a button "Synthesize Data". Provide a random company name and the number of customers, products, previous purchases records and human-agent conversations to synthesize, then click on the button. When the "running" state of the upper-right corner is finished, refresh the page to have a complete set of backend data synthesized for you, ready to play with.
+in the frontend "log in" page, at the lower right corner, there is a button "Synthesize". 
+![login page](./frontend/assets//login_page.png)
+Provide a random company name and the number of customers, products, previous purchases records and human-agent conversations to synthesize, then click on the button. When the "running" state of the upper-right corner is finished, refresh the page to have a complete set of backend data synthesized for you, ready to play with.

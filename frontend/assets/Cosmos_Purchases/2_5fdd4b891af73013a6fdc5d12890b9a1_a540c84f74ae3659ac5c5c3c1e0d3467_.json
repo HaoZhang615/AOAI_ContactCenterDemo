@@ -1,0 +1,23 @@
+{
+    "customer_id": "a540c84f74ae3659ac5c5c3c1e0d3467",
+    "product_id": "5fdd4b891af73013a6fdc5d12890b9a1",
+    "quantity": 7,
+    "purchasing_date": "2024-07-15T10:30:00Z",
+    "delivered_date": "2024-07-20T10:30:00Z",
+    "order_number": "07b87548ba6b34199f7b69109db04ecc",
+    "product_details": {
+        "name": "Google Maps",
+        "category": "Software",
+        "type": "Navigation",
+        "brand": "Google",
+        "unit_price": 0,
+        "weight": {
+            "value": 0,
+            "unit": ""
+        },
+        "color": "",
+        "material": ""
+    },
+    "total_price": 0,
+    "id": "2_07b87548ba6b34199f7b69109db04ecc"
+}

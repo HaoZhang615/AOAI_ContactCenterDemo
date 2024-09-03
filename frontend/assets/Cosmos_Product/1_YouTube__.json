@@ -1,0 +1,15 @@
+{
+    "name": "YouTube Premium",
+    "category": "Entertainment",
+    "type": "Subscription Service",
+    "brand": "Google",
+    "unit_price": 11.99,
+    "weight": {
+        "value": "",
+        "unit": ""
+    },
+    "color": "",
+    "material": "",
+    "product_id": "3c048a35f32e3506ac73f1deb698e47e",
+    "id": "1_3c048a35f32e3506ac73f1deb698e47e"
+}

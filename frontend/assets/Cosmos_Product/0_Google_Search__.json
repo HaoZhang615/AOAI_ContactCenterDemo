@@ -1,0 +1,15 @@
+{
+    "name": "Google Search",
+    "category": "Technology Services",
+    "type": "Search Engine",
+    "brand": "Google",
+    "unit_price": 0,
+    "weight": {
+        "value": 0,
+        "unit": ""
+    },
+    "color": "",
+    "material": "",
+    "product_id": "614ee6b218e33c2c96b0f5d53c06dfec",
+    "id": "0_614ee6b218e33c2c96b0f5d53c06dfec"
+}
