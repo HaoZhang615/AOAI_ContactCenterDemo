@@ -54,5 +54,10 @@
             "content": "You're welcome, Chloe. Have a great day!"
         }
     ],
-    "agent_id": 5
+    "agent_id": 5,
+    "sentiment": "disappointed",
+    "topic": "Sustainability",
+    "product": "YouTube",
+    "session_id": "9130f974124a3b7e81fce90a7ee3efed",
+    "id": "chat_1_9130f974124a3b7e81fce90a7ee3efed"
 }

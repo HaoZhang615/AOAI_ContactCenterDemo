@@ -62,5 +62,10 @@
             "content": "Okay, thanks. I hope this fixes it."
         }
     ],
-    "agent_id": 2
+    "agent_id": 2,
+    "sentiment": "disappointed",
+    "topic": "account",
+    "product": "Gmail",
+    "session_id": "65c3b12c02653a09a40818c8fc9ad167",
+    "id": "chat_2_65c3b12c02653a09a40818c8fc9ad167"
 }

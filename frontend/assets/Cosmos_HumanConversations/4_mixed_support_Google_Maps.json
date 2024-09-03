@@ -1,0 +1,59 @@
+{
+    "customer_id": 16,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Thank you for calling Google support, Paula. My name is Davinci. How can I assist you today?"
+        },
+        {
+            "role": "user",
+            "content": "Hi Davinci. I have some issues with Google Maps. It keeps showing incorrect routes."
+        },
+        {
+            "role": "assistant",
+            "content": "I apologize for the inconvenience, Paula. Can you give me more details about the issue? Are the routes incorrect for a specific location or is this happening everywhere?"
+        },
+        {
+            "role": "user",
+            "content": "It's been happening everywhere, and it's quite frustrating. One moment it's fine, and the next moment it's taking me in circles."
+        },
+        {
+            "role": "assistant",
+            "content": "I understand how that can be very frustrating, Paula. Let's try to resolve this. Have you tried updating the app to the latest version?"
+        },
+        {
+            "role": "user",
+            "content": "Yes, I have the latest version installed. I'm really getting tired of these issues. It’s not the first time this has happened."
+        },
+        {
+            "role": "assistant",
+            "content": "I'm sorry for the repeated trouble. Sometimes clearing the app cache can help. Would you like to try that?"
+        },
+        {
+            "role": "user",
+            "content": "Okay, I'll give that a go. But honestly, it should just work without these fixes."
+        },
+        {
+            "role": "assistant",
+            "content": "I agree, Paula. We strive to provide the best experience and I'm here to help ensure that happens. Please let me know if clearing the cache resolves the issue."
+        },
+        {
+            "role": "user",
+            "content": "Alright, I cleared the cache. It seems to be working now, but I'm not entirely convinced this will last."
+        },
+        {
+            "role": "assistant",
+            "content": "I'm glad it’s working for now. If the problem persists, please don't hesitate to contact us again. We're here to assist you anytime."
+        },
+        {
+            "role": "user",
+            "content": "Thanks, Davinci. I appreciate your help, but I hope I don't have to call back."
+        }
+    ],
+    "agent_id": 4,
+    "sentiment": "mixed",
+    "topic": "support",
+    "product": "Google",
+    "session_id": "f5f37fbdf223334ca48a3bfd74019483",
+    "id": "chat_4_f5f37fbdf223334ca48a3bfd74019483"
+}

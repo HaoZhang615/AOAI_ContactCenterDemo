@@ -54,5 +54,10 @@
             "content": "Thank you, Victor! Have a wonderful day!"
         }
     ],
-    "agent_id": 5
+    "agent_id": 5,
+    "sentiment": "content",
+    "topic": "Sustainability",
+    "product": "Google",
+    "session_id": "0abbb0a8089e39e893d3d3fe8d881d4d",
+    "id": "chat_0_0abbb0a8089e39e893d3d3fe8d881d4d"
 }
