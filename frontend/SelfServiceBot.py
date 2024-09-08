@@ -40,6 +40,22 @@ container = database.create_container_if_not_exists(
     partition_key=PartitionKey(path="/customer_id"),  
     offer_throughput=400  
 )
+# Function to get customer first name and evaluate if the customer is likely to be a male
+def is_customer_male(customer_id):
+    customer_info = get_customer_info(customer_id)
+    customer_first_name = customer_info.get("first_name", "")
+    # call Azure OpenAI API
+    system_message = f"""You are a helpful assistant that help people evaluate if the customer is likely to be a male based on the customer's first name.
+            output "true" (if the first name provided is likely to be a male's first name) or false (if the first name provided is not likely to be a male's first name).            """
+    messages=[{"role": "system", "content": system_message}]
+    messages.append({"role": "user", "content": f"the first name of the customer is {customer_first_name}"})
+    response = client.chat.completions.create(
+        model= gpt4o_mini,
+        messages=messages,
+        temperature=0,
+        max_tokens=100,
+    )
+    return response.choices[0].message.content
 
 # Function STT
 def speech_to_text(audio:bytes)->str:
@@ -61,7 +77,7 @@ def text_to_speech(input:str):
     body = {
         "input": input,
         # use the echo voice if if customer_id is 3,4 or 5, else use the shimmer voice
-        "voice": "fable" if session_customer_id in [3,4,5] else "shimmer",
+        "voice": "shimmer" if is_customer_male(session_customer_id) == "true" else "fable",
         "model": "tts",
         "response_format": "mp3"
     }
