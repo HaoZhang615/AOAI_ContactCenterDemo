@@ -1,0 +1,14 @@
+{
+    "first_name": "Quinn",
+    "last_name": "Harris",
+    "email": "quinn.harris@example.com",
+    "address": {
+        "street": "Maple Street 45",
+        "city": "New York",
+        "postal_code": "10001",
+        "country": "USA"
+    },
+    "phone_number": "+12135551234",
+    "customer_id": "123ebaca359831b18af4957f9bf96f83",
+    "id": "2_123ebaca359831b18af4957f9bf96f83"
+}

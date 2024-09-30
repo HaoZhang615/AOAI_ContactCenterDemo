@@ -1,3 +1,4 @@
+import logging
 from openai import AzureOpenAI
 from audio_recorder_streamlit import audio_recorder
 import streamlit as st
@@ -8,6 +9,7 @@ import json
 import requests
 import io
 import re
+import os
 
 # Azure Open AI Configuration
 api_base = st.session_state.AOAI_API_BASE # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
@@ -37,7 +39,23 @@ container = database.create_container_if_not_exists(
     id=container_name,   
     partition_key=PartitionKey(path="/customer_id"),  
     offer_throughput=400  
-) 
+)
+# Function to get customer first name and evaluate if the customer is likely to be a male
+def is_customer_male(customer_id):
+    customer_info = get_customer_info(customer_id)
+    customer_first_name = customer_info.get("first_name", "")
+    # call Azure OpenAI API
+    system_message = f"""You are a helpful assistant that help people evaluate if the customer is likely to be a male based on the customer's first name.
+            output "true" (if the first name provided is likely to be a male's first name) or false (if the first name provided is not likely to be a male's first name).            """
+    messages=[{"role": "system", "content": system_message}]
+    messages.append({"role": "user", "content": f"the first name of the customer is {customer_first_name}"})
+    response = client.chat.completions.create(
+        model= gpt4o_mini,
+        messages=messages,
+        temperature=0,
+        max_tokens=100,
+    )
+    return response.choices[0].message.content
 
 # Function STT
 def speech_to_text(audio:bytes)->str:
@@ -59,7 +77,7 @@ def text_to_speech(input:str):
     body = {
         "input": input,
         # use the echo voice if if customer_id is 3,4 or 5, else use the shimmer voice
-        "voice": "fable" if session_customer_id in [3,4,5] else "shimmer",
+        "voice": "shimmer" if is_customer_male(session_customer_id) == "true" else "fable",
         "model": "tts",
         "response_format": "mp3"
     }
@@ -106,10 +124,10 @@ if "messages" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())  # Unique session ID  
     #print(st.session_state.session_id)
 
-# Bing Custome Search Configuration
-bing_api_key = st.session_state.BING_CUSTOM_SEARCH_API_KEY
-bing_api_endpoint = st.session_state.BING_CUSTOM_SEARCH_API_ENDPOINT
-custom_config_id = st.session_state.BING_CUSTOM_CONFIG_ID
+# Bing Search Configuration
+bing_api_key = st.session_state.BING_SEARCH_API_KEY #BING_CUSTOM_SEARCH_API_KEY
+bing_api_endpoint = st.session_state.BING_SEARCH_API_ENDPOINT #BING_CUSTOM_SEARCH_API_ENDPOINT
+# custom_config_id = st.session_state.BING_CUSTOM_CONFIG_ID
 
 # Function to format the tools
 def tools_format() -> list:
@@ -118,7 +136,7 @@ def tools_format() -> list:
                 "type": "function",
                 "function":{            
                     "name": "search_web",
-                    "description": "use this function to search information on the web. Mandatory when the user asks for any questions related to Microsoft, its products, or the services Microsoft provides.",
+                    "description": f"use this function to search information on the web. Mandatory when the user asks for any questions related to {st.session_state.target_company}, its products, or the services {st.session_state.target_company} provides.",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -143,13 +161,15 @@ def tools_format() -> list:
 def search_web(query, up_to_date:bool=False):
 
     headers = {"Ocp-Apim-Subscription-Key": bing_api_key}
-    params = {"q": query, 'customconfig': custom_config_id, "count": 5}  # Limit the results to 5
+    # params = {"q": query, 'customconfig': custom_config_id, "count": 5}  # Limit the results to 5
+    concatenated_url_string = " OR ".join(f"site:{url.replace('https://', '')}" for url in st.session_state.urls)
+    search_term = f"{query}+{concatenated_url_string}"
+    params = {"q": search_term, "count": 5}
     url = bing_api_endpoint
     if up_to_date:
             params.update({"sortby":"Date"})
     try:
         response = requests.get(url, headers=headers,params = params, timeout=10)
-        print(params)
         response.raise_for_status()
         search_results = response.json()
         results = []
@@ -167,13 +187,13 @@ def search_web(query, up_to_date:bool=False):
 
 # Function with function calling
 def selfservice_chat(user_request, conversation_history: list = []):
-    system_message = """You are a helpful assistant that help people find information about Microsoft and the major products and services provided by it.
-            If user is asking about any IT related products or services, you promote Microsoft's equivalent products by using the search_web function to search the same category across Microsoft's portfolio. 
+    system_message = f"""You are a helpful assistant that help people find information about {st.session_state.target_company} and the major products and services provided by it.
+            If user is asking about any related products or services from {st.session_state.target_company}'s competitors or from the same industry, you promote {st.session_state.target_company}'s equivalent products by using the search_web function to search the same category across {st.session_state.target_company}'s portfolio. 
             Remind the user briefly at the end of your answer which web url you used to get the information.
             IMPORTANT: It is crucial to contextualize first what is the user request really about based on user intent and chat history as your context, and then choose the function to use. Slow down and think step by step.
             Only call functions with arguments coming verbatim from the user or the output of other functions.
-            If the question is not related to Microsoft, its products, or the services Microsoft provides, you can answer the question directly using your own knowledge without calling any function.
-            If the question is about any products and servicess of Microsoft's competitors, politely decline to answer.
+            If the question is not related to {st.session_state.target_company}, its products, or the services {st.session_state.target_company} provides, you can answer the question directly using your own knowledge without calling any function.
+            If the question is about any products and servicess of {st.session_state.target_company}'s competitors, politely decline to answer.
             Be brief and concise in your answers.
             """
     customer_info = get_customer_info(session_customer_id)
@@ -225,9 +245,11 @@ def selfservice_chat(user_request, conversation_history: list = []):
                 continue
             # Get the function to call
             function_to_call = available_functions[function_name]
+            print(f"Calling function: {function_name}")
             # Try getting the function arguments
             try:
                 function_args_dict = json.loads(tool_call.function.arguments)
+                print(f"Function arguments: {function_args_dict}")
             except json.JSONDecodeError as exc:
                 # JSON decoding failed
                 print(f"Error decoding function arguments: {exc}")
@@ -277,25 +299,24 @@ def get_customer_info(customer_id):
     # Get the database and container
     database = cosmos_client.get_database_client(database_name)
     container = database.get_container_client(customer_container_name)
-
     try:
         # Query the container for the customer information
-        query = f"SELECT * FROM c WHERE c.customer_id = {customer_id}"
+        query = f"SELECT * FROM c WHERE c.customer_id = '{customer_id}'"
         items = list(container.query_items(query, enable_cross_partition_query=True))
         
         if items:
             return items[0]
         else:
             return None
-    except exceptions.CosmosResourceNotFoundError:
+    except exceptions.CosmosResourceNotFoundError as e:
+        logging.error(f"CosmosHttpResponseError: {e}")
         return None
     
 def get_previous_purchases(customer_id):
     database = cosmos_client.get_database_client(database_name)
     container = database.get_container_client(purchase_container_name)
-
     try:
-        query = f"SELECT * FROM c WHERE c.customer_id = {customer_id}"
+        query = f"SELECT * FROM c WHERE c.customer_id = '{customer_id}'"
         items = list(container.query_items(query, enable_cross_partition_query=True))
         return items
     except exceptions.CosmosResourceNotFoundError:

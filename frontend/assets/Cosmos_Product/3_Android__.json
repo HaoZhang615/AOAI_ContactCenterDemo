@@ -1,0 +1,15 @@
+{
+    "name": "Pixel 6",
+    "category": "Smartphone",
+    "type": "Electronics",
+    "brand": "Google",
+    "unit_price": 699.99,
+    "weight": {
+        "value": 207,
+        "unit": "grams"
+    },
+    "color": "Sorta Seafoam",
+    "material": "Gorilla Glass",
+    "product_id": "0abf3b93c7203d3b8808435051ec3fe0",
+    "id": "3_0abf3b93c7203d3b8808435051ec3fe0"
+}

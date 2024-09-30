@@ -1,0 +1,67 @@
+{
+    "customer_id": 15,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Thank you for calling Google customer service. This is Adam. May I know your name, please?"
+        },
+        {
+            "role": "user",
+            "content": "My name is Oliver, and I'm really frustrated right now. I need some answers about my Google Maps subscription payment!"
+        },
+        {
+            "role": "assistant",
+            "content": "I understand, Oliver. I'm here to help. Could you please provide me with some more details about the issue you're facing with the payment?"
+        },
+        {
+            "role": "user",
+            "content": "I've been charged twice for my Google Maps subscription this month! This is unacceptable. I need to know why this happened and how you're going to fix it."
+        },
+        {
+            "role": "assistant",
+            "content": "I'm really sorry to hear that, Oliver. Let me check your account details to see what went wrong. Could you please confirm your account email address for me?"
+        },
+        {
+            "role": "user",
+            "content": "It’s oliver@example.com. I'm tired of dealing with these issues every month. Can’t you guys get anything right?"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you, Oliver. I'm pulling up your details now. I apologize for the inconvenience you've experienced. It looks like there was a system error that caused the duplicate charge. I will initiate a refund for the extra payment immediately."
+        },
+        {
+            "role": "user",
+            "content": "You better. This is the second time this has happened. How will I know when the refund is processed?"
+        },
+        {
+            "role": "assistant",
+            "content": "I understand your frustration, Oliver. Once I initiate the refund, you should receive a confirmation email within the next 24 hours. The refund itself will be reflected in your account within 3-5 business days."
+        },
+        {
+            "role": "user",
+            "content": "Fine. But this better not happen again. You guys need to fix your system!"
+        },
+        {
+            "role": "assistant",
+            "content": "I assure you, Oliver, we are working on addressing these kinds of issues to prevent them from happening in the future. Is there anything else I can assist you with today?"
+        },
+        {
+            "role": "user",
+            "content": "No, just make sure the refund goes through. That's all I need."
+        },
+        {
+            "role": "assistant",
+            "content": "I will take care of that for you, Oliver. Thank you for your patience, and again, I apologize for the inconvenience. Have a good day."
+        },
+        {
+            "role": "user",
+            "content": "We'll see. Goodbye."
+        }
+    ],
+    "agent_id": 1,
+    "sentiment": "angry",
+    "topic": "payment",
+    "product": "Google",
+    "session_id": "d047826d17c03360a61f630f0ca99e39",
+    "id": "chat_5_d047826d17c03360a61f630f0ca99e39"
+}

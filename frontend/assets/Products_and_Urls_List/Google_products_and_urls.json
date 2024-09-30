@@ -1,0 +1,16 @@
+{
+    "products": [
+        "Google Search",
+        "YouTube",
+        "Google Maps",
+        "Android",
+        "Gmail"
+    ],
+    "urls": [
+        "https://www.google.com",
+        "https://www.youtube.com",
+        "https://www.google.com/maps",
+        "https://www.android.com",
+        "https://mail.google.com"
+    ]
+}
