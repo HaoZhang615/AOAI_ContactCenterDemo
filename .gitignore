@@ -6,3 +6,5 @@ synthesized_documents/*
 scripts/*
 archived_documents/*
 tts_batch.py
+*/__pycache__/*
+cosmosdb-entra-id-auth.ps1
