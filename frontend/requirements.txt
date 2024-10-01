@@ -4,3 +4,4 @@ python-dotenv
 azure-cosmos==4.6.0  
 audio_recorder_streamlit
 papermill
+azure-identity
