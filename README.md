@@ -40,3 +40,9 @@ This is a demo project for the AOAI Contact Center. It is a simple web applicati
 in the frontend "log in" page, at the lower right corner, there is a button "Synthesize". 
 ![login page](./frontend/assets//login_page.png)
 Provide a random company name and the number of customers, products, previous purchases records and human-agent conversations to synthesize, then click on the button. When the "running" state of the upper-right corner is finished, refresh the page to have a complete set of backend data synthesized for you, ready to play with.
+
+## How to use Entra ID to create CosmosDB Client
+- New frontend/utils.py implements new function that creates CosmosDB client
+- Function is taking single parameter that allows use of CosmosDB key or Entra ID (Service Principle)
+- To use Entra ID, register new Azure App and update AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET in .env (rename .env.template to .env and update all env variables as appropriate)
+- To allow Service Principle to access CosmosDB data (e.g. to allow it to create containers), update and execute cosmosdb-entra-id-auth-template.ps1 
