@@ -10,6 +10,7 @@ import requests
 import io
 import re
 import os
+from utils import create_cosmosdb_client
 
 # Azure Open AI Configuration
 api_base = st.session_state.AOAI_API_BASE # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
@@ -29,7 +30,8 @@ client = AzureOpenAI(
 # CosmosDB Configuration
 cosmos_endpoint = st.session_state.COSMOS_ENDPOINT
 cosmos_key = st.session_state.COSMOS_KEY
-cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
+# cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
+cosmos_client = create_cosmosdb_client(use_cosmos_key=False)
 database_name = st.session_state.COSMOS_DATABASE
 database = cosmos_client.create_database_if_not_exists(id=database_name)  
 container_name = "AI_Conversations"  
