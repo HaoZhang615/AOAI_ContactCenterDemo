@@ -6,3 +6,9 @@ synthesized_documents/*
 scripts/*
 archived_documents/*
 tts_batch.py
+frontend/assets/Cosmos_Customer/*
+frontend/assets/Cosmos_HumanConversations/*
+frontend/assets/Cosmos_Product/*
+frontend/assets/Cosmos_Purchases/*
+frontend/assets/Products_and_Urls_List/*
+frontend/assets/scripts/synthesizeEverything_output.ipynb
