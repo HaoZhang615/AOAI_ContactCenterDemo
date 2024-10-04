@@ -1,5 +1,6 @@
 import streamlit as st
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
+from azure.identity import DefaultAzureCredential
 from openai import AzureOpenAI
 import random
 import json
@@ -24,9 +25,10 @@ client = AzureOpenAI(
 )
 
 # CosmosDB Configuration
+credential = DefaultAzureCredential()
 cosmos_endpoint = st.session_state.COSMOS_ENDPOINT
-cosmos_key = st.session_state.COSMOS_KEY
-cosmos_client = CosmosClient(cosmos_endpoint, cosmos_key)
+# cosmos_key = st.session_state.COSMOS_KEY
+cosmos_client = CosmosClient(cosmos_endpoint, credential)
 database_name = st.session_state.COSMOS_DATABASE
 database = cosmos_client.create_database_if_not_exists(id=database_name)  
 customer_container_name = "Customer"
@@ -105,8 +107,8 @@ def display_previous_purchases(purchases):
         st.write("No previous purchases found.")
 
 def get_prior_conversation(customer_id):
-    client = CosmosClient(cosmos_endpoint, cosmos_key)
-    database = client.get_database_client(database_name)
+    cosmos_client = CosmosClient(cosmos_endpoint, credential)
+    database = cosmos_client.get_database_client(database_name)
     container = database.get_container_client(ai_conversations_container_name)
 
     try:
