@@ -30,7 +30,6 @@ client = AzureOpenAI(
 # CosmosDB Configuration
 credential = DefaultAzureCredential()
 cosmos_endpoint = st.session_state.COSMOS_ENDPOINT
-# cosmos_key = st.session_state.COSMOS_KEY
 cosmos_client = CosmosClient(cosmos_endpoint, credential)
 database_name = st.session_state.COSMOS_DATABASE
 database = cosmos_client.create_database_if_not_exists(id=database_name)  
