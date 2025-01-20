@@ -102,17 +102,24 @@ pg.run()
 
 if st.session_state.logged_in == False:
     products_folder_path = os.path.join(os.path.dirname(__file__), 'assets', 'Products_and_Urls_List')
+    json_file_path = None
     for file_name in os.listdir(products_folder_path):
         if file_name.endswith('.json'):
             json_file_path = os.path.join(products_folder_path, file_name)
             break
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
-    st.session_state.products = data['products']
-    st.session_state.urls = data['urls']
 
-    # set target_company variable to the first word of the filename separated by underscore and add it to the session state
-    st.session_state.target_company = file_name.split('_')[0]
+    if json_file_path:
+        with open(json_file_path, 'r') as file:
+            data = json.load(file)
+        st.session_state.products = data['products']
+        st.session_state.urls = data['urls']
+
+        # set target_company variable to the first word of the filename separated by underscore and add it to the session state
+        st.session_state.target_company = file_name.split('_')[0]
+    else:
+        st.session_state.products = []
+        st.session_state.urls = []
+        st.session_state.target_company = "Unknown"
 
     # count number of files in the Cosmos_Customer folder, Cosmos_Product folder, Cosmos_Purchase folder, Cosmos_HumanConversations folder
     customer_folder_path = os.path.join(os.path.dirname(__file__), 'assets', 'Cosmos_Customer')
