@@ -1,11 +1,30 @@
 import streamlit as st
+import requests
+import json
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
 from azure.identity import DefaultAzureCredential
 from openai import AzureOpenAI
 import random
-import json
 import uuid
 from datetime import datetime
+
+API_BASE_URL = "http://localhost:8000"
+
+async def get_ai_response(messages, conversation_id=None):
+    try:
+        response = requests.post(
+            f"{API_BASE_URL}/chat/ai-assisted",
+            json={
+                "messages": messages,
+                "conversation_id": conversation_id,
+                "user_id": st.session_state.user_id
+            }
+        )
+        response.raise_for_status()
+        return response.json()["response"]
+    except Exception as e:
+        st.error(f"Error: {str(e)}")
+        return None
 
 # Set the title of the app
 st.title("AI Assisted Live Chat with Forwarded Customer Conversation")
@@ -147,7 +166,7 @@ provide a key-points based summary with the key-points being: 'Issue Reported', 
 def display_prior_conversation_summary(summary):
     st.write(f"{summary}")
 
-def generate_recommended_reply(customer_id):
+async def generate_recommended_reply(customer_id):
     system_message = """
 You are a senior customer service agent who is good at giving next-turn reply to keep an engaging conversation and solving customer's problem. 
 You got forwarded an existing customer service conversation done by another junior agent with extra provided context of customer information and previous purchases.
@@ -170,15 +189,9 @@ The existing conversation:\n\n"""
         ]
     if "new_messages" in st.session_state:
         messages.extend(st.session_state.new_messages)
-    completion = client.chat.completions.create(
-    model=gpt4o_mini,
-    temperature=0.5,
-    max_tokens=800,
-    messages=messages,
-)
-    return completion.choices[0].message.content
+    return await get_ai_response(messages)
 
-def human_chat(customer_id):
+async def human_chat(customer_id):
     system_message = """you are in a role playing game simulating what a real-life human would say in a customer service conversation. 
             The user simulates what a friendly customer service agent would say and you will pretend to be a real-world grumpy user seeking for help. 
             You will finish the conversation within 3 turns, either happily accepting the provided help or leaving the conversation with a negative sentiment.
@@ -200,13 +213,7 @@ def human_chat(customer_id):
         ]
     if "new_messages" in st.session_state:
         messages.extend(st.session_state.new_messages)
-    completion = client.chat.completions.create(
-    model=gpt4o_mini,
-    temperature=0.5,
-    max_tokens=800,
-    messages=messages,
-)
-    return completion.choices[0].message.content
+    return await get_ai_response(messages)
 
 def save_chat(session_id, customer_id, messages):  
     document_id = f"chat_{session_id}"  # Create a document ID that is consistent throughout the session  
