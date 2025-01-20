@@ -1,8 +1,8 @@
+import os
+import json
 import papermill as pm
 import streamlit as st
-import os
 from dotenv import load_dotenv
-import json
 
 # Load environment variables
 load_dotenv()
@@ -10,6 +10,19 @@ load_dotenv()
 # Initialize the session state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+# Ensure necessary directories exist
+required_directories = [
+    'frontend/assets/Cosmos_Customer',
+    'frontend/assets/Cosmos_HumanConversations',
+    'frontend/assets/Cosmos_Product',
+    'frontend/assets/Cosmos_Purchases',
+    'frontend/assets/Products_and_Urls_List'
+]
+
+for directory in required_directories:
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 # Login function
 def login():
@@ -88,33 +101,6 @@ else:
 pg.run()
 
 if st.session_state.logged_in == False:
-
-    # # Layout with one column for logo and radio buttons
-    # col1, col2 = st.columns([5, 1])
-
-    # with col1:
-    #     # Mapping company names to logo filenames
-    #     companies = ["Azure", "Dynamics", "GitHub", "LinkedIn", "Office", "Hardware"]
-    #     logo_mapping = {
-    #         "Azure": "Azure.png",
-    #         "Dynamics": "Dynamics.png",
-    #         "GitHub": "GitHub.png",
-    #         "LinkedIn": "LinkedIn.png",
-    #         "Office": "Office.png",
-    #         "Hardware": "Hardware.png",
-    #     }
-    #     company = st.radio("Select a product:", companies, horizontal=True)
-
-    # with col2:
-    #     # Set a fixed height container for the logo
-    #     logo_filename = logo_mapping.get(company)
-    #     if logo_filename:
-    #         # Get the current directory of the script
-    #         base_dir = os.path.dirname(os.path.abspath(__file__))
-    #         logo_path = os.path.join(base_dir, f"logos/{logo_filename}")
-    #         # Display the image inside the fixed height container
-    #         st.image(logo_path, width=300)
-
     products_folder_path = os.path.join(os.path.dirname(__file__), 'assets', 'Products_and_Urls_List')
     for file_name in os.listdir(products_folder_path):
         if file_name.endswith('.json'):
@@ -124,6 +110,7 @@ if st.session_state.logged_in == False:
         data = json.load(file)
     st.session_state.products = data['products']
     st.session_state.urls = data['urls']
+
     # set target_company variable to the first word of the filename separated by underscore and add it to the session state
     st.session_state.target_company = file_name.split('_')[0]
 
@@ -152,7 +139,6 @@ if st.session_state.logged_in == False:
         st.write(f"Number of products synthesized: **{product_count}**")
         st.write(f"Number of purchases synthesized: **{purchase_count}**")
         st.write(f"Number of human conversations synthesized: **{human_conversation_count}**")
-        # add seperator line
         st.markdown("---")
         col4, col5 = st.columns([3, 1])
         with col4:
