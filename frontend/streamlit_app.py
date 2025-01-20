@@ -1,8 +1,8 @@
 import os
 import json
-import papermill as pm
 import streamlit as st
 from dotenv import load_dotenv
+from assets.scripts.synthesizer import run_synthesis
 
 # Load environment variables
 load_dotenv()
@@ -162,19 +162,18 @@ if st.session_state.logged_in == False:
             number_product = st.text_input("number product", key="number_product", label_visibility = "collapsed")
             number_human_conversation = st.text_input("number human conversation", key="number_human_conversation", label_visibility = "collapsed")
             # execute the synthesization process by clicking the button and call the notebook assets/scripts/SynthesizeEverything.ipynb
-            notebook_path = os.path.join(os.path.dirname(__file__), 'assets', 'scripts', 'SynthesizeEverything.ipynb')
-            output_path = os.path.join(os.path.dirname(__file__), 'assets', 'scripts', 'SynthesizeEverything_output.ipynb')
             if st.button("Synthesize"):
                 params = {
-                    # convert new_company to int
                     "company_name": new_company,
                     "number_of_customers": int(number_customer),
                     "number_of_product": int(number_product),
                     "number_of_human_conversations": int(number_human_conversation)
                 }
                 print(f"Parameters: {params}")
-                pm.execute_notebook(        
-                    notebook_path,  # Input notebook path
-                    output_path,    # Output notebook path
-                    parameters=params  # Parameters to pass to the notebook
-                    )
+                # Replace notebook execution with direct function call
+                run_synthesis(
+                    company_name=params["company_name"],
+                    num_customers=params["number_of_customers"],
+                    num_products=params["number_of_product"],
+                    num_conversations=params["number_of_human_conversations"]
+                )
